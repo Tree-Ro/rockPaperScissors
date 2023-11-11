@@ -57,12 +57,12 @@ function getUserChoice(userChoice = prompt('Choose between Rock, Paper and Sciss
 }
 
 
-function playRound (userChoice = getComputerChoice(), computerChoice = getComputerChoice()) {  //userChoice = getUserChoice() is what is supposed to be there, temp changed it for testing purposes
+function playRound (userChoice = getUserChoice(), computerChoice = getComputerChoice()) {  //userChoice = getUserChoice() is what is supposed to be there, temp changed it for testing purposes
     let result;
     
     if ( userChoice === 'cancelled' ) {
         console.log(`Hah! You lost, your enemy picked ${computerChoice} and you gave up.`)
-        return result = 'userSurrender'
+        return result = 'userLoss'
     }
     
     let orderedChoices = ['rock', 'paper', 'scissors']
@@ -70,16 +70,47 @@ function playRound (userChoice = getComputerChoice(), computerChoice = getComput
     let userIndex = orderedChoices.indexOf(userChoice)
 
 
-    if ( (userIndex === (computerIndex + 1)) || userIndex === (computerIndex + 2) ){
-        console.log(`Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`)
+    if ( (userIndex === (computerIndex + 1)) || userIndex === (computerIndex - 2) ){
+       console.log(`Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`)
         return result = 'userWin'
         
-    } else if (userIndex === (computerIndex - 1) || userIndex === (computerIndex - 2) ) {
-        console.log(`Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`)
+    } else if (userIndex === (computerIndex - 1) || userIndex === (computerIndex + 2) ) {
+       console.log(`Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`)
         return result = 'userLoss'
 
     } else if (userIndex === computerIndex) {
-        console.log(`Hm! You both picked ${userChoice} and you tied...`)
+       console.log(`Hm! You both picked ${userChoice} and you tied...`)
         return result = 'tie'
     }
 }
+
+
+function playGame() {
+    
+    console.log('Let\'s start this game! It will be a best out of 5 and whoever wins the most wins the whole game!')
+    let winCounter = 0;
+    let lossCounter = 0;
+    let tieCounter = 0;
+
+    for (n = 0; n < 5; n++) {
+        let result = playRound()
+
+        switch (result) {
+            case 'userWin':
+                winCounter += 1
+                break;
+            case 'userLoss':
+                lossCounter += 1
+                break;
+            case 'tie':
+                tieCounter += 1
+                break;
+        } 
+        console.log(`
+        Wins: ${winCounter}
+        Losses: ${lossCounter}
+        Ties: ${tieCounter}`)
+    }
+}
+
+playGame()
