@@ -32,7 +32,7 @@ function getRandomChoice() { // Generates a random choice between rock, paper an
 }
 
 
-function getComputerChoice() {  //Created this function simply for readability of playRound function
+function getComputerChoice() {
     return getRandomChoice()
 }
 
@@ -51,16 +51,13 @@ function getUserChoice(userChoice = prompt('Choose between Rock, Paper and Sciss
         case 'scissors':
             return userChoice
             break;
-        case 'scissor':         // Error correction in case it's misspelled
-            return 'scissors'
-            break;
         default:               // Catch-all error correction. 
             return 'cancelled'
     }
 }
 
 
-function playRound (computerChoice = getComputerChoice(), userChoice = getUserChoice()) { 
+function playRound (userChoice = getComputerChoice(), computerChoice = getComputerChoice()) {  //userChoice = getUserChoice() is what is supposed to be there, temp changed it for testing purposes
     let result;
     
     if ( userChoice === 'cancelled' ) {
@@ -73,14 +70,15 @@ function playRound (computerChoice = getComputerChoice(), userChoice = getUserCh
     let userIndex = orderedChoices.indexOf(userChoice)
 
 
-    if ( userIndex === (computerIndex + 1) ){
+    if ( (userIndex === (computerIndex + 1)) || userIndex === (computerIndex + 2) ){
         console.log(`Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`)
         return result = 'userWin'
         
-    } else if (userIndex === (computerIndex - 1) ) {
+    } else if (userIndex === (computerIndex - 1) || userIndex === (computerIndex - 2) ) {
         console.log(`Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`)
         return result = 'userLoss'
-    } else {
+
+    } else if (userIndex === computerIndex) {
         console.log(`Hm! You both picked ${userChoice} and you tied...`)
         return result = 'tie'
     }
