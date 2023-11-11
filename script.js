@@ -65,28 +65,28 @@ function playRound (userChoice = getUserChoice(), computerChoice = getComputerCh
         return result = 'userLoss'
     }
     
-    let orderedChoices = ['rock', 'paper', 'scissors']
-    let computerIndex = orderedChoices.indexOf(computerChoice)
-    let userIndex = orderedChoices.indexOf(userChoice)
+    const orderedChoices = ['rock', 'paper', 'scissors']
+    const computerIndex = orderedChoices.indexOf(computerChoice)
+    const userIndex = orderedChoices.indexOf(userChoice)
 
 
     if ( (userIndex === (computerIndex + 1)) || userIndex === (computerIndex - 2) ){
-       console.log(`Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`)
+        console.log(`Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`)
         return result = 'userWin'
         
     } else if (userIndex === (computerIndex - 1) || userIndex === (computerIndex + 2) ) {
-       console.log(`Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`)
+        console.log(`Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`)
         return result = 'userLoss'
 
     } else if (userIndex === computerIndex) {
-       console.log(`Hm! You both picked ${userChoice} and you tied...`)
+        console.log(`Hm! You both picked ${userChoice} and you tied...`)
         return result = 'tie'
     }
 }
 
 
 function playGame() {
-    
+
     console.log('Let\'s start this game! It will be a best out of 5 and whoever wins the most wins the whole game!')
     let winCounter = 0;
     let lossCounter = 0;
