@@ -136,7 +136,7 @@ div#choiceDisplay {
     flex-grow: 1;
     align-items: center;
     font-size: 6vh;
-    box-shadow: 10px 5px 5px black;
+    box-shadow: 5px 2px 2px black;
     margin: 3px;
 }
 

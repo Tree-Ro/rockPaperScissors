@@ -1,20 +1,42 @@
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissors = document.querySelector('#scissors');
+const rps = document.querySelectorAll('.choices');
 
-let userChoice;
-rock.addEventListener('click', () => {
-    userChoice = 'rock';
-});
-paper.addEventListener('click', () => {
-    userChoice = 'paper';
-});
-scissors.addEventListener('click', () => {
-    userChoice = 'scissors';
+rps.forEach((button) => {
+    button.addEventListener('click', () => {
+        userChoice = button.id;
+        removeHighlightCSS();
+        button.setAttribute(
+            'style',
+            'background-color: #1a253b; box-shadow: 10px 5px 5px black;'
+        );
+    });
 });
 
-// Generates a random choice between rock, paper and scissors
-function getRandomChoice() {
+const submitButton = document.querySelector('#submitButton');
+submitButton.addEventListener('click', () => {
+    playRound(userChoice);
+
+    submitButton.setAttribute('style', 'box-shadow: 5px 3px 3px black;');
+    setTimeout(
+        () =>
+            submitButton.setAttribute(
+                'style',
+                'background-color: #1a253b; box-shadow: 10px 5px 5px black;'
+            ),
+        600 * 1
+    );
+});
+
+function removeHighlightCSS() {
+    rps.forEach((button) => {
+        button.setAttribute(
+            'style',
+            'background-color: none; box-shadow: 5px 2px 2px black;'
+        );
+    });
+}
+
+// Generates a random choice
+function getComputerChoice() {
     let choice;
     const random = Math.random();
 
@@ -25,34 +47,7 @@ function getRandomChoice() {
         : (choice = 'scissors');
 }
 
-function getComputerChoice() {
-    return getRandomChoice();
-}
-
-rock.addEventListener('click', () => {
-    let userChoice = 'rock';
-});
-
-function getUserChoice(userChoice) {
-    switch (userChoice) {
-        case 'rock':
-            return userChoice;
-            break;
-        case 'paper':
-            return userChoice;
-            break;
-        case 'scissors':
-            return userChoice;
-            break;
-        default: // Catch-all error correction.
-            return 'cancelled';
-    }
-}
-
-function playRound(
-    userChoice = getUserChoice(),
-    computerChoice = getComputerChoice()
-) {
+function playRound(userChoice, computerChoice = getComputerChoice()) {
     let result;
 
     if (userChoice === 'cancelled') {
@@ -82,6 +77,8 @@ function playRound(
     } else if (userIndex === computerIndex) {
         console.log(`Hm! You both picked ${userChoice} and you tied...`);
         return (result = 'tie');
+    } else {
+        console.log('error');
     }
 }
 
