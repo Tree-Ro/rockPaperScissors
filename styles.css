@@ -62,6 +62,10 @@ div#description {
     width: 60%;
     text-align: center;
 }
+
+p {
+    font-size: 1vw;
+}
 /*  */
 /*  */
 div#scoreContainer {
@@ -118,18 +122,34 @@ div#choiceDisplay {
     display: flex;
 }
 
-#rock, #paper, #scissors {
-    border: 5px solid white;
+#rpsElements button, #submitButton {
+    padding: 0;
+    border: none;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    }
+
+#rock, #paper, #scissors, #submitButton {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     align-items: center;
     font-size: 6vh;
     box-shadow: 10px 5px 5px black;
-    margin: 2px;
+    margin: 3px;
 }
 
-#rock:hover, #paper:hover, #scissors:hover {
+#rock:hover, #paper:hover, #scissors:hover, #submitButton:hover {
     background-color: #1a253b;
-    animation: 1s infinite alternate slidein; 
+}
+/*  */
+#submitButton {
+    display: flex;
+    font-size: 3vh;
+    box-shadow: 10px 5px 5px black;
+    margin: 0px;
+    padding: 6px;
+    max-height: 5vh;
+    text-align: center;
 }

@@ -1,3 +1,18 @@
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+
+let userChoice;
+rock.addEventListener('click', () => {
+    userChoice = 'rock';
+});
+paper.addEventListener('click', () => {
+    userChoice = 'paper';
+});
+scissors.addEventListener('click', () => {
+    userChoice = 'scissors';
+});
+
 // Generates a random choice between rock, paper and scissors
 function getRandomChoice() {
     let choice;
@@ -14,12 +29,11 @@ function getComputerChoice() {
     return getRandomChoice();
 }
 
-function getUserChoice(
-    userChoice = prompt('Choose between Rock, Paper and Scissors: ')
-) {
-    userChoice = String(userChoice);
-    userChoice = userChoice.toLowerCase();
+rock.addEventListener('click', () => {
+    let userChoice = 'rock';
+});
 
+function getUserChoice(userChoice) {
     switch (userChoice) {
         case 'rock':
             return userChoice;
