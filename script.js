@@ -1,116 +1,100 @@
-//Idea?
-//Create a Script that takes inputs from the user and plays Rock Paper Scissors with them. 
-//
-// PSEUDOCODE!!!! 
-
-//Declare Function getRandomChoice()
-// Selects randomly between Rock, Paper & Scissors. 
-
-//Declare Function getComputerChoice()
-// - Select random between Rock, Paper & Scissors,
-// Display Choice
-
-//Declare Function getUserChoice()
-//Prompt() user for their choice if none is given, generate a random one. 
-// Display Choice
-
-//Declare Function playRound(playerChoice, computerChoice)
-// - Compare caseinsensitive playerChoice & computerChoice, return outcome
-
-//Declare Function game()
-// - Loop playRound 5 times, display winner after each round, 
-
-
-
-function getRandomChoice() { // Generates a random choice between rock, paper and scissors
+// Generates a random choice between rock, paper and scissors
+function getRandomChoice() {
     let choice;
-    const random = Math.random()
+    const random = Math.random();
 
-    return random >= 2/3 ? choice = 'rock'
-    : random >= 1/3 ? choice = 'paper'
-    : choice = 'scissors'
+    return random >= 2 / 3
+        ? (choice = 'rock')
+        : random >= 1 / 3
+        ? (choice = 'paper')
+        : (choice = 'scissors');
 }
-
 
 function getComputerChoice() {
-    return getRandomChoice()
+    return getRandomChoice();
 }
 
+function getUserChoice(
+    userChoice = prompt('Choose between Rock, Paper and Scissors: ')
+) {
+    userChoice = String(userChoice);
+    userChoice = userChoice.toLowerCase();
 
-function getUserChoice(userChoice = prompt('Choose between Rock, Paper and Scissors: ')) { //Gets user choice and checks for errors
-    userChoice = String( userChoice )
-    userChoice = userChoice.toLowerCase()
-
-    switch ( userChoice ) {
+    switch (userChoice) {
         case 'rock':
-            return userChoice
+            return userChoice;
             break;
         case 'paper':
-            return userChoice
+            return userChoice;
             break;
         case 'scissors':
-            return userChoice
+            return userChoice;
             break;
-        default:               // Catch-all error correction. 
-            return 'cancelled'
+        default: // Catch-all error correction.
+            return 'cancelled';
     }
 }
 
-
-function playRound (userChoice = getUserChoice(), computerChoice = getComputerChoice()) {  //userChoice = getUserChoice() is what is supposed to be there, temp changed it for testing purposes
+function playRound(
+    userChoice = getUserChoice(),
+    computerChoice = getComputerChoice()
+) {
     let result;
-    
-    if ( userChoice === 'cancelled' ) {
-        console.log(`Hah! You lost, your enemy picked ${computerChoice} and you gave up.`)
-        return result = 'userLoss'
+
+    if (userChoice === 'cancelled') {
+        console.log(
+            `Hah! You lost, your enemy picked ${computerChoice} and you gave up.`
+        );
+        return (result = 'userLoss');
     }
-    
-    const orderedChoices = ['rock', 'paper', 'scissors']
-    const computerIndex = orderedChoices.indexOf(computerChoice)
-    const userIndex = orderedChoices.indexOf(userChoice)
 
+    const orderedChoices = ['rock', 'paper', 'scissors'];
+    const computerIndex = orderedChoices.indexOf(computerChoice);
+    const userIndex = orderedChoices.indexOf(userChoice);
 
-    if ( (userIndex === (computerIndex + 1)) || userIndex === (computerIndex - 2) ){
-        console.log(`Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`)
-        return result = 'userWin'
-        
-    } else if (userIndex === (computerIndex - 1) || userIndex === (computerIndex + 2) ) {
-        console.log(`Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`)
-        return result = 'userLoss'
-
+    if (userIndex === computerIndex + 1 || userIndex === computerIndex - 2) {
+        console.log(
+            `Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`
+        );
+        return (result = 'userWin');
+    } else if (
+        userIndex === computerIndex - 1 ||
+        userIndex === computerIndex + 2
+    ) {
+        console.log(
+            `Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`
+        );
+        return (result = 'userLoss');
     } else if (userIndex === computerIndex) {
-        console.log(`Hm! You both picked ${userChoice} and you tied...`)
-        return result = 'tie'
+        console.log(`Hm! You both picked ${userChoice} and you tied...`);
+        return (result = 'tie');
     }
 }
-
 
 function playGame() {
-
-    console.log('Let\'s start this game! It will be a best out of 5 and whoever wins the most wins the whole game!')
+    console.log(
+        "Let's start this game! It will be a best out of 5 and whoever wins the most wins the whole game!"
+    );
     let winCounter = 0;
     let lossCounter = 0;
     let tieCounter = 0;
 
-    for (n = 0; n < 5; n++) {
-        let result = playRound()
+    let result = playRound();
 
-        switch (result) {
-            case 'userWin':
-                winCounter += 1
-                break;
-            case 'userLoss':
-                lossCounter += 1
-                break;
-            case 'tie':
-                tieCounter += 1
-                break;
-        } 
-        console.log(`
+    switch (result) {
+        case 'userWin':
+            winCounter += 1;
+            break;
+        case 'userLoss':
+            lossCounter += 1;
+            break;
+        case 'tie':
+            tieCounter += 1;
+            break;
+    }
+
+    console.log(`
         Wins: ${winCounter}
         Losses: ${lossCounter}
-        Ties: ${tieCounter}`)
-    }
+        Ties: ${tieCounter}`);
 }
-
-playGame()
