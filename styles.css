@@ -5,6 +5,7 @@ body {
     color: white;
     height: 100vh;
     width: 100vw;
+    font-size: 1vw;
 }
 
 
@@ -19,16 +20,28 @@ div#container {
     min-width: 400px;
     width: 70vw;
     margin:0 auto; 
-
 }
 
-div {
+/* div {
     width: 10px;
     border: 5px solid white;
     margin: 5px;
+} */
+
+/*  */
+/*  */
+div#title {
+    margin: 10% 5px 5px 5px; 
+    height: 10vh;
+    max-height: 10vh;
+    width: 80%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-h1 {
+#title {
     font-family: 'Bowlby One SC', cursive;
     text-align: center;
     font-size: 2rem;
@@ -37,18 +50,86 @@ h1 {
     margin: 5px;
 }
 
-div#title {
-    margin: 10% 5px 5px 5px; 
-    height: 10vh;
-    width: 80%;
+.rpsDecor {
+    flex-grow: 1;
+    font-size: 3rem;
+    text-align: center; 
+    max-width: 80px;
+}
 
+div#description {
+    margin: 3% 5px 5px 5px;
+    width: 60%;
+    text-align: center;
+}
+/*  */
+/*  */
+div#scoreContainer {
+    margin: 3vh;
+    width: 50%;
+    height: 10vh;
+    min-height: 50px;
     display: flex;
-    justify-content: space-around;
     align-items: center;
 }
 
-.rpsDecor {
-    
+div.score {
+    font-family: 'Bowlby One SC', cursive;
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
-    font-size: 3rem;
+    align-items: center;
+    border: 5px solid white;
+}
+#wins, #losses, #ties {
+    font-size: 2vh;
+}
+/*  */
+/*  */
+div#choiceDisplay {
+    margin-top: 2vh;
+    width: 30%;
+    height: 10vh;
+    min-height: 50px;
+    display: flex;
+}
+
+#choiceDisplay div{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#yourChoice, #computerChoice {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 5vh;
+
+} 
+/*  */
+/*  */
+#rpsElements {
+    margin: 6vh;
+    width: 40%;
+    height: 10vh;
+    min-height: 50px;
+    display: flex;
+}
+
+#rock, #paper, #scissors {
+    border: 5px solid white;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    font-size: 6vh;
+    box-shadow: 10px 5px 5px black;
+    margin: 2px;
+}
+
+#rock:hover, #paper:hover, #scissors:hover {
+    background-color: #1a253b;
+    animation: 1s infinite alternate slidein; 
 }
