@@ -14,7 +14,11 @@ function initialiseInteractivity() {
 
     const submitButton = document.querySelector('#submitButton');
     submitButton.addEventListener('click', () => {
-        playRound(userChoice);
+        if (wins.textContent >= 5 || losses.textContent >= 5) {
+            resetGame();
+        } else {
+            playRound(userChoice);
+        }
 
         submitButton.setAttribute('style', 'box-shadow: 5px 3px 3px black;');
         setTimeout(
@@ -95,6 +99,10 @@ function displayResults(result) {
         computerChoice.setAttribute('style', 'color: #af0000;'); //red
         ++ties.textContent;
     }
+
+    if (wins.textContent >= 5 || losses.textContent >= 5) {
+        submitButton.textContent = 'Restart?';
+    }
 }
 
 function resetGame() {
@@ -105,6 +113,7 @@ function resetGame() {
     wins.textContent = 0;
     losses.textContent = 0;
     ties.textContent = 0;
+    submitButton.textContent = 'Submit';
     userChoice.removeAttribute('style');
     computerChoice.removeAttribute('style');
     submitButton.removeAttribute('style');
