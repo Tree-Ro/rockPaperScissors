@@ -85,6 +85,9 @@ function playRound(userChoice, computerChoice = getComputerChoice()) {
 function displayResults(result) {
     const userChoice = document.querySelector('#userChoice');
     const computerChoice = document.querySelector('#computerChoice');
+    const submitButton = document.querySelector('#submitButton');
+    const winContainer = document.querySelector('#winContainer');
+    const lossContainer = document.querySelector('#lossContainer');
 
     if (result === 'userWin') {
         userChoice.setAttribute('style', 'color: #00d500;'); //green
@@ -100,8 +103,12 @@ function displayResults(result) {
         ++ties.textContent;
     }
 
-    if (wins.textContent >= 5 || losses.textContent >= 5) {
+    if (wins.textContent >= 5) {
         submitButton.textContent = 'Restart?';
+        winContainer.setAttribute('style', 'border: 5px dotted #00d500');
+    } else if (losses.textContent >= 5) {
+        submitButton.textContent = 'Restart?';
+        lossContainer.setAttribute('style', 'border: 5px dotted #af0000');
     }
 }
 
@@ -117,5 +124,8 @@ function resetGame() {
     userChoice.removeAttribute('style');
     computerChoice.removeAttribute('style');
     submitButton.removeAttribute('style');
+    winContainer.removeAttribute('style');
+    lossContainer.removeAttribute('style');
+
     rps.forEach((button) => button.removeAttribute('style'));
 }
