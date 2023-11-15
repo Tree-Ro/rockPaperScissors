@@ -44,7 +44,7 @@ div#title {
 #title {
     font-family: 'Bowlby One SC', cursive;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2vw;
 
     flex-grow: 3;
     margin: 5px;
@@ -64,7 +64,7 @@ div#description {
 }
 
 p {
-    font-size: 1vw;
+    font-size: 1.5vw;
 }
 /*  */
 /*  */
@@ -110,7 +110,6 @@ div#choiceDisplay {
     flex-grow: 1;
     text-align: center;
     font-size: 5vh;
-
 } 
 /*  */
 /*  */

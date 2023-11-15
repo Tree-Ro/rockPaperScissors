@@ -1,39 +1,43 @@
-const rps = document.querySelectorAll('.choices');
+function initialiseInteractivity() {
+    const rps = document.querySelectorAll('.choices');
 
-rps.forEach((button) => {
-    button.addEventListener('click', () => {
-        userChoice = button.id;
-        removeHighlightCSS();
-        button.setAttribute(
-            'style',
-            'background-color: #1a253b; box-shadow: 10px 5px 5px black;'
-        );
-    });
-});
-
-const submitButton = document.querySelector('#submitButton');
-submitButton.addEventListener('click', () => {
-    playRound(userChoice);
-
-    submitButton.setAttribute('style', 'box-shadow: 5px 3px 3px black;');
-    setTimeout(
-        () =>
-            submitButton.setAttribute(
+    rps.forEach((button) => {
+        button.addEventListener('click', () => {
+            userChoice = button.id;
+            removeHighlightCSS();
+            button.setAttribute(
                 'style',
                 'background-color: #1a253b; box-shadow: 10px 5px 5px black;'
-            ),
-        600 * 1
-    );
-});
+            );
+        });
+    });
 
-function removeHighlightCSS() {
-    rps.forEach((button) => {
-        button.setAttribute(
-            'style',
-            'background-color: none; box-shadow: 5px 2px 2px black;'
+    const submitButton = document.querySelector('#submitButton');
+    submitButton.addEventListener('click', () => {
+        playRound(userChoice);
+
+        submitButton.setAttribute('style', 'box-shadow: 5px 3px 3px black;');
+        setTimeout(
+            () =>
+                submitButton.setAttribute(
+                    'style',
+                    'background-color: #1a253b; box-shadow: 10px 5px 5px black;'
+                ),
+            600 * 1
         );
     });
+
+    function removeHighlightCSS() {
+        rps.forEach((button) => {
+            button.setAttribute(
+                'style',
+                'background-color: none; box-shadow: 5px 2px 2px black;'
+            );
+        });
+    }
 }
+
+initialiseInteractivity();
 
 // Generates a random choice
 function getComputerChoice() {
@@ -49,13 +53,6 @@ function getComputerChoice() {
 
 function playRound(userChoice, computerChoice = getComputerChoice()) {
     let result;
-
-    if (userChoice === 'cancelled') {
-        console.log(
-            `Hah! You lost, your enemy picked ${computerChoice} and you gave up.`
-        );
-        return (result = 'userLoss');
-    }
 
     const orderedChoices = ['rock', 'paper', 'scissors'];
     const computerIndex = orderedChoices.indexOf(computerChoice);
