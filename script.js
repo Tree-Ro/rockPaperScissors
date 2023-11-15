@@ -3,7 +3,7 @@ function initialiseInteractivity() {
 
     rps.forEach((button) => {
         button.addEventListener('click', () => {
-            userChoice = button.id;
+            userChoice = button.textContent;
             removeHighlightCSS();
             button.setAttribute(
                 'style',
@@ -45,64 +45,54 @@ function getComputerChoice() {
     const random = Math.random();
 
     return random >= 2 / 3
-        ? (choice = 'rock')
+        ? (choice = '🪨')
         : random >= 1 / 3
-        ? (choice = 'paper')
-        : (choice = 'scissors');
+        ? (choice = '📰')
+        : (choice = '✂');
 }
 
 function playRound(userChoice, computerChoice = getComputerChoice()) {
     let result;
 
-    const orderedChoices = ['rock', 'paper', 'scissors'];
+    document.querySelector('#userChoice').textContent = userChoice;
+    document.querySelector('#computerChoice').textContent = computerChoice;
+
+    const orderedChoices = ['🪨', '📰', '✂'];
     const computerIndex = orderedChoices.indexOf(computerChoice);
     const userIndex = orderedChoices.indexOf(userChoice);
 
     if (userIndex === computerIndex + 1 || userIndex === computerIndex - 2) {
-        console.log(
-            `Ooo! You win with ${userChoice} over your enemies ${computerChoice}!`
-        );
-        return (result = 'userWin');
+        result = 'userWin';
+        displayResults(result);
     } else if (
         userIndex === computerIndex - 1 ||
         userIndex === computerIndex + 2
     ) {
-        console.log(
-            `Ouch! You lost with ${userChoice} against your enemies ${computerChoice}`
-        );
-        return (result = 'userLoss');
+        result = 'userLoss';
+        displayResults(result);
     } else if (userIndex === computerIndex) {
-        console.log(`Hm! You both picked ${userChoice} and you tied...`);
-        return (result = 'tie');
+        result = 'tie';
+        displayResults(result);
     } else {
-        console.log('error');
+        console.log('Error: The round has no outcome.');
     }
 }
 
-function playGame() {
-    console.log(
-        "Let's start this game! It will be a best out of 5 and whoever wins the most wins the whole game!"
-    );
-    let winCounter = 0;
-    let lossCounter = 0;
-    let tieCounter = 0;
+function displayResults(result) {
+    const userChoice = document.querySelector('#userChoice');
+    const computerChoice = document.querySelector('#computerChoice');
 
-    let result = playRound();
-
-    switch (result) {
-        case 'userWin':
-            winCounter += 1;
-            break;
-        case 'userLoss':
-            lossCounter += 1;
-            break;
-        case 'tie':
-            tieCounter += 1;
-            break;
+    if (result === 'userWin') {
+        userChoice.setAttribute('style', 'color: #00d500;'); //green
+        computerChoice.setAttribute('style', 'color: #af0000;'); //red
+        ++wins.textContent;
+    } else if (result === 'userLoss') {
+        userChoice.setAttribute('style', 'color: #af0000;'); //red
+        computerChoice.setAttribute('style', 'color: #00d500;'); //green
+        ++losses.textContent;
+    } else if (result === 'tie') {
+        userChoice.setAttribute('style', 'color: #af0000;'); //red
+        computerChoice.setAttribute('style', 'color: #af0000;'); //red
+        ++ties.textContent;
     }
-
-    console.log(`
-        Wins: ${winCounter}
-        Losses: ${lossCounter}
-        Ties: ${tieCounter}`);
 }

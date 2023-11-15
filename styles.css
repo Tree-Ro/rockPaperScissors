@@ -106,9 +106,7 @@ div#choiceDisplay {
     text-align: center;
 }
 
-#yourChoice, #computerChoice {
-    flex-grow: 1;
-    text-align: center;
+#userChoice, #computerChoice {
     font-size: 5vh;
 } 
 /*  */
