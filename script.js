@@ -96,3 +96,17 @@ function displayResults(result) {
         ++ties.textContent;
     }
 }
+
+function resetGame() {
+    const userChoice = document.querySelector('#userChoice');
+    const computerChoice = document.querySelector('#computerChoice');
+    const rps = document.querySelectorAll('.choices');
+
+    wins.textContent = 0;
+    losses.textContent = 0;
+    ties.textContent = 0;
+    userChoice.removeAttribute('style');
+    computerChoice.removeAttribute('style');
+    submitButton.removeAttribute('style');
+    rps.forEach((button) => button.removeAttribute('style'));
+}
